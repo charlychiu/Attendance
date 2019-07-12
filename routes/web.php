@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $clientIP = request()->ip();
+    return view('welcome')->with('ip', $clientIP);
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/duty/on', 'HomeController@dutyOn')->name('duty.on');
+Route::post('/duty/off', 'HomeController@dutyOff')->name('duty.off');
